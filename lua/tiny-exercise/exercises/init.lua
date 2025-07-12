@@ -1,7 +1,10 @@
 local M = {}
 
 M.nav_to_first_character_of_next_line = {
-  buffer = {
+  instruction_lines = {
+    "Jump from the cursor position to the first non blank character of the next line."
+  },
+  exercise_lines = {
     "function test()",
     "  print('Hello')",
     "end"
