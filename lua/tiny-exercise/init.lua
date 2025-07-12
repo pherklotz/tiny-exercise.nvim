@@ -1,4 +1,4 @@
-local exercises = require("vim-training.exercises")
+local exercises = require("tiny-exercise.exercises")
 local M = {}
 
 function M.setup(opts)
