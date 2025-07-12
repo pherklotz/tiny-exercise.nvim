@@ -17,11 +17,12 @@ M.training = function()
   vim.api.nvim_buf_set_option(buf_id, 'swapfile', false)
   vim.cmd("buffer" .. buf_id)
   vim.cmd("file Training")
-  vim.cmd("2")
+  vim.cmd("set filetype=lua")
   local exercise = exercises.nav_to_first_character_of_next_line
   local instructions = prepareInstructions(exercise.instruction_lines)
   local mod_content = tableConcat(instructions, exercise.exercise_lines)
   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, mod_content)
+  vim.api.nvim_win_set_cursor(0, { exercise.start_position.row + #instructions + 1, exercise.start_position.column })
 end
 
 -- Adds comment sign for each line and adds a blank line at the end
@@ -36,10 +37,14 @@ end
 
 -- concatenate the tables
 function tableConcat(t1, t2)
-  for i = 1, #t2 do
-    t1[#t1 + 1] = t2[i]
+  local result = {}
+  for i = 1, #t1 do
+    result[#result + 1] = t1[i]
   end
-  return t1
+  for i = 1, #t2 do
+    result[#result + 1] = t2[i]
+  end
+  return result
 end
 
 return M

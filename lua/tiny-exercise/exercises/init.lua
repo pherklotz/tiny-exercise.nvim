@@ -11,8 +11,10 @@ M.nav_to_first_character_of_next_line = {
   },
   start_position = {
     row = 0,
-    column = 10
-  }
+    column = 7
+  },
+  filetype = "lua",
+  expected_keys = { "+" }
 }
 
 return M
