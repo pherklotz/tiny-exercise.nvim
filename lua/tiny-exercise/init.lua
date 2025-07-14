@@ -17,8 +17,10 @@ M.training = function()
   vim.api.nvim_buf_set_option(buf_id, 'swapfile', false)
   vim.cmd("buffer" .. buf_id)
   vim.cmd("file Training")
-  vim.cmd("set filetype=lua")
-  local exercise = exercises.nav_to_first_character_of_next_line
+  local exercise = exercises.next_exercise()
+  if exercise.filetype then
+    vim.cmd("set filetype=" .. exercise.filetype)
+  end
   local instructions = prepareInstructions(exercise.instruction_lines)
   local mod_content = tableConcat(instructions, exercise.exercise_lines)
   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, mod_content)
